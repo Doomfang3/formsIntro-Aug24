@@ -1,45 +1,55 @@
+import { useLocation, useNavigate } from 'react-router-dom'
+
 function UserProfilePage() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const userProfile = {
-    image: "https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-cohort-tools-routing/profile-1.png",
-    name: "Jane Doe",
-    email: "janed@example.com",
-    role: "Lead Teacher",
-  };
+    image:
+      'https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-cohort-tools-routing/profile-1.png',
+    name: 'Jane Doe',
+    email: 'janed@example.com',
+    role: 'Lead Teacher',
+  }
+
+  const navigateBack = () => {
+    navigate(location.state.previous)
+  }
 
   return (
-    <div className="StudentDetailsPage bg-gray-100 py-6 px-4 border-2 border-violet-500 m-2">
+    <div className='StudentDetailsPage bg-gray-100 py-6 px-4 border-2 border-violet-500 m-2'>
       <h1>User Profile Page</h1>
-      <div className="bg-white p-8 rounded-lg shadow-md mb-6">
+      <div className='bg-white p-8 rounded-lg shadow-md mb-6'>
         {userProfile && (
           <>
             <img
               src={userProfile.image}
-              alt="profile-photo"
-              className="rounded-full w-32 h-32 object-cover border-2 border-gray-300"
+              alt='profile-photo'
+              className='rounded-full w-32 h-32 object-cover border-2 border-gray-300'
             />
-            <h1 className="text-2xl mt-4 font-bold absolute">
-              {userProfile.name}
-            </h1>
+            <h1 className='text-2xl mt-4 font-bold absolute'>{userProfile.name}</h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-24 mb-4 border-b pb-4">
-              <p className="text-left mb-2 pb-2">
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-24 mb-4 border-b pb-4'>
+              <p className='text-left mb-2 pb-2'>
                 <strong>Email:</strong> {userProfile.email}
               </p>
-              <p className="text-left mb-2 pb-2">
+              <p className='text-left mb-2 pb-2'>
                 <strong>Role:</strong> {userProfile.role}
               </p>
             </div>
           </>
         )}
 
-        {/* Back button */}        
-        <button className="text-white px-4 py-2 rounded bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out">
+        {/* Back button */}
+        <button
+          className='text-white px-4 py-2 rounded bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out'
+          onClick={navigateBack}
+        >
           Back
         </button>
-        
       </div>
     </div>
-  );
+  )
 }
 
-export default UserProfilePage;
+export default UserProfilePage
